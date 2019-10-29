@@ -127,11 +127,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1716680920}
     m_Modifications:
-    - target: {fileID: -2991941123366109337, guid: ad8b661f1064b104db2766054255534c,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 1096b98e4ec0747419a7f61e2ea72dfe, type: 2}
     - target: {fileID: 0}
       propertyPath: JumpHeight
       value: 3.5
@@ -141,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: -2991941123366109337, guid: ad8b661f1064b104db2766054255534c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1096b98e4ec0747419a7f61e2ea72dfe, type: 2}
     - target: {fileID: 5199691401241226761, guid: ad8b661f1064b104db2766054255534c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -329,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315530860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.89, y: 1, z: 0}
+  m_LocalPosition: {x: -11.1, y: 1, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1716680920}
@@ -373,7 +373,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: bfd70c0a33be44844a945beacfa3e5a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40dfbdd13e387d34f94c9308f5e57bca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

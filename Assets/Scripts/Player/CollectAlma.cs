@@ -6,11 +6,15 @@ public class CollectAlma : MonoBehaviour
 {
 
     public AudioSource CollectSound;
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        CollectSound.Play();
-        ScoreSystem.Score += 10;
-        Destroy(gameObject);
+        if(other.gameObject.tag == "Alma" && gameObject.name == "player" && gameObject.tag == "Player")
+        {
+            Destroy(other.gameObject);
+            CollectSound.Play();
+            ScoreSystem.Score += 10;
+            Physics2D.IgnoreCollision(other, GetComponent<Collider2D>());
+        }
     }
 
 }

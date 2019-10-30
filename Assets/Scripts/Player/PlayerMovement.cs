@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public CharacterController2D controller2D;
 
-    public float JumpHeight = 5f;
+    public float runSpeed = 40f;
 
-    public bool isGrounded = false;
-
-    void Start()
-    {
-        
-    }
+    float horizontalMove = 0f;
+    bool jump = false;
+    bool crouch = false;
 
     void Update()
     {
-        Jump();
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * moveSpeed;
-    }
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-    void Jump()
-    {
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        if(Input.GetButtonDown("Jump"))
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, JumpHeight), ForceMode2D.Impulse);
+            jump = true;
         }
+        if(Input.GetButtonDown("Crouch"))
+        {
+            crouch = true;
+        } else if(Input.GetButtonUp("Crouch"))
+        {
+            crouch = false;
+        }
+    }
+    void FixedUpdate()
+    {
+        controller2D.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        jump = false;
     }
 }

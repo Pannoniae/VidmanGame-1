@@ -3356,20 +3356,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Textures:
-
-    Justvidman
-
-
-    Level design/Code:
-
-    Mario_D
-
-    DmanHUN
-
-    Senpai
-
-    and others who we will list later'
+  m_Text: "Textures:\nJustvidman\n\nLevel design/Code:\nMario_D\nDmanHUN\nVar\xE1zs
+    S\xE1rk\xE1ny\nand others who we will list later"
 --- !u!222 &1405882661
 CanvasRenderer:
   m_ObjectHideFlags: 0

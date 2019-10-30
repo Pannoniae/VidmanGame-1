@@ -453,8 +453,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Instagram
+      - m_Target: {fileID: 1418076450}
+        m_MethodName: Reddit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1418076450}
         m_MethodName: Twitter
         m_Mode: 1
         m_Arguments:
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1026,8 +1026,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: YoutubeMain
+      - m_Target: {fileID: 1418076450}
+        m_MethodName: Youtube
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1233,7 +1233,6 @@ GameObject:
   m_Component:
   - component: {fileID: 453999574}
   - component: {fileID: 453999576}
-  - component: {fileID: 453999575}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -1263,19 +1262,6 @@ RectTransform:
   m_AnchoredPosition: {x: 430, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &453999575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453999573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8345b3d20d20474983e752b4b40c2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioObjectName: Nom
 --- !u!114 &453999576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,18 +1311,7 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 453999575}
-        m_MethodName: UpdateAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &474048901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2513,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1418076450}
         m_MethodName: Facebook
         m_Mode: 1
         m_Arguments:
@@ -3356,8 +3331,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Textures:\nJustvidman\n\nLevel design/Code:\nMario_D\nDmanHUN\nVar\xE1zs
-    S\xE1rk\xE1ny\nand others who we will list later"
+  m_Text: "Everyone who contributed to this project:\nMario_D\nPannoniae\nDManHUN\nDragon\nDemon_Of_Nightmares\nExAtom\nkecsk\xE9cske6"
 --- !u!222 &1405882661
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3380,6 +3354,8 @@ GameObject:
   - component: {fileID: 1418076446}
   - component: {fileID: 1418076453}
   - component: {fileID: 1418076452}
+  - component: {fileID: 1418076450}
+  - component: {fileID: 1418076451}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3478,6 +3454,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1418076450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418076445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ba1077d45b8fd41a39a1a800a224d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1418076451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418076445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098afcaf719f4d44e95f1b59a747c457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 0
+  level: 0
 --- !u!114 &1418076452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,7 +4225,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1418076450}
         m_MethodName: Discord
         m_Mode: 1
         m_Arguments:
@@ -4947,7 +4949,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1418076450}
         m_MethodName: Instagram
         m_Mode: 1
         m_Arguments:

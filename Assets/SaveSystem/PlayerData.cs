@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerData
 {
-    public int level;
+    public string level;
     public int Score;
     public float[] position;
 

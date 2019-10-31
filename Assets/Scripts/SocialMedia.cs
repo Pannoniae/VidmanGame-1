@@ -15,7 +15,7 @@ public class SocialMedia : MonoBehaviour
     }
     public void Instagram()
     {
-        Application.OpenURL("https://wwww.instagram.com/JustVidman");
+        Application.OpenURL("https://www.instagram.com/JustVidman");
     }
     public void Twitter()
     {

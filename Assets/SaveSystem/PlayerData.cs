@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-
+[System.Serializable] 
 public class PlayerData
 {
     public string level;
@@ -16,8 +15,9 @@ public class PlayerData
         Score = player.Score;
 
         position = new float[3];
-        position[0] = player.transform.position.x;
-        position[1] = player.transform.position.y;
-        position[2] = player.transform.position.z;
+        var position1 = player.transform.position;
+        position[0] = position1.x;
+        position[1] = position1.y;
+        position[2] = position1.z;
     }
 }

@@ -122,10 +122,7 @@ NavMeshSettings:
   m_NavMeshData: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> 9b7c652e83cb6eb8c7e474abc0706f45140db09f
 =======
 >>>>>>> 9b7c652e83cb6eb8c7e474abc0706f45140db09f
 --- !u!1 &99956384
@@ -1697,9 +1694,6 @@ BoxCollider2D:
   m_Size: {x: 0.82, y: 0.99}
   m_EdgeRadius: 0
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of e2545d7... hp félkész
-=======
->>>>>>> 9b7c652e83cb6eb8c7e474abc0706f45140db09f
 =======
 >>>>>>> 9b7c652e83cb6eb8c7e474abc0706f45140db09f

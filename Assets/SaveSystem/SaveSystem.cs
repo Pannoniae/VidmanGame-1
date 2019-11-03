@@ -6,24 +6,27 @@ public static class SaveSystem
 {
     public static void SavePlayer(Player player)
     {
-        var formatter = new BinaryFormatter();
-        var path = Application.persistentDataPath + "/player.jvm";
-        using (var stream = new FileStream(path, FileMode.Create)) {
-            var data = new PlayerData(player);
-            formatter.Serialize(stream, data);
-        }
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/player.jvm";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        PlayerData data = new PlayerData(player);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
     }
 
     public static PlayerData LoadPlayer()
     {
-        var path = Application.persistentDataPath + "/player.jvm";
+        string path = Application.persistentDataPath + "/player.jvm";
         if (File.Exists(path))
         {
-            var formatter = new BinaryFormatter();
-            PlayerData data;
-            using (var stream = new FileStream(path, FileMode.Open)) {
-                data = formatter.Deserialize(stream) as PlayerData;
-            }
+            BinaryFormatter foramtter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerData data = foramtter.Deserialize(stream) as PlayerData;
+            stream.Close();
+
             return data;
         }
         else

@@ -1,27 +1,32 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     public int Score;
     public string level;
     public PauseMenu pauseMenu;
 
-    public void SavePlayer() {
-        Score = ScoreSystem.score;
+    public void SavePlayer()
+    {
+        Score = ScoreSystem.Score;
         level = SceneManager.GetActiveScene().name;
         SaveSystem.SavePlayer(this);
     }
 
-    public void LoadPlayer() {
+    public void LoadPlayer()
+    {
         pauseMenu = GameObject.Find("pause Canvas").GetComponent<PauseMenu>();
-        var data = SaveSystem.LoadPlayer();
+        PlayerData data = SaveSystem.LoadPlayer();
 
-        var crScene = SceneManager.GetActiveScene().name;
-        if (crScene != data.level) {
-            SceneManager.LoadScene(data.level);
+        string crScene = SceneManager.GetActiveScene().name;
+        if(crScene != data.level)
+        {
+        SceneManager.LoadScene(data.level);
         }
-
-        ScoreSystem.score = data.Score;
+        ScoreSystem.Score = data.Score;
 
         Vector3 position;
         position.x = data.position[0];
@@ -31,4 +36,5 @@ public class Player : MonoBehaviour {
 
         pauseMenu.Resume();
     }
+
 }

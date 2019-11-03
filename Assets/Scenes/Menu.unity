@@ -3061,7 +3061,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Everyone who contributed to this project:\nMario_D\nPannoniae\nDManHUN\nDragon\nDemon_Of_Nightmares\nExAtom\nkecsk\xE9cske6"
+  m_Text: "Everyone who contributed to this project:\nMario_D\nPannoniae\nDmanHUN\nDragon\nDemon_Of_Nightmares\nExAtom\nkecsk\xE9cske6"
 --- !u!222 &1405882661
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3210,6 +3210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   level: 0
+  pauseMenu: {fileID: 0}
 --- !u!114 &1418076452
 MonoBehaviour:
   m_ObjectHideFlags: 0

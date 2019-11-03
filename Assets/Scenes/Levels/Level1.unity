@@ -120,11 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9b7c652e83cb6eb8c7e474abc0706f45140db09f
 --- !u!1 &99956384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,7 +1688,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.82, y: 0.99}
   m_EdgeRadius: 0
-<<<<<<< HEAD
->>>>>>> parent of e2545d7... hp félkész
-=======
->>>>>>> 9b7c652e83cb6eb8c7e474abc0706f45140db09f

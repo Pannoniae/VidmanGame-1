@@ -1,31 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class FullscreenToggle : MonoBehaviour
-{
+public class FullscreenToggle : MonoBehaviour {
     public Toggle toggle;
 
-    void Start()
-    {
+    void Start() {
         //Add listener for when the state of the Toggle changes, to take action
-        toggle.onValueChanged.AddListener(delegate {
-            ToggleValueChanged(toggle);
-        });
-
+        toggle.onValueChanged.AddListener(_ => ToggleValueChanged(toggle));
     }
 
     //Output the new state of the Toggle into Text
-    void ToggleValueChanged(Toggle change)
-    {
-        if(toggle.isOn == false)
-        {
+    void ToggleValueChanged(Toggle change) {
+        if (toggle.isOn == false) {
             Screen.fullScreen = !Screen.fullScreen;
             Debug.Log("FS disabled");
         }
-        else
-        {
+        else {
             Screen.fullScreen = true;
             Debug.Log("FS enabled");
         }

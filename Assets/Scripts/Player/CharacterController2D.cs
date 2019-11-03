@@ -119,31 +119,31 @@ public class CharacterController2D : MonoBehaviour {
         theScale.x *= -1;
         transform1.localScale = theScale;
     }
-    void Update()
+
+    public void Update()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0f)
-        {
-            anim.SetBool("isWalking", true);
-        }
-        else
-        {
-            anim.SetBool("isWalking", false);
-        }
-        if(Input.GetButtonDown("Jump") && grounded)
-        {
-            anim.SetBool("hasJumped", true);
-        }
-        else if(Input.GetButtonUp("Jump") || !grounded)
-        {
-            anim.SetBool("hasJumped", false);
-        }
-        if(!grounded)
-        {
-            anim.SetBool("isFalling", true);
-        }
-        else
-        {
-            anim.SetBool("isFalling", false);
-        }
+        
+            if(Input.GetAxisRaw("Horizontal") != 0f)
+            {
+                anim.SetBool("isWalking", true);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
+            if(Input.GetButtonDown("Jump") && grounded)
+            {
+                anim.SetBool("isJumping", true);
+            }
+            if(!grounded)
+            {
+                anim.SetBool("isJumping", false);
+                anim.SetBool("isFalling", true);
+            }
+            else
+            {
+                anim.SetBool("isFalling", false);
+            }
+        
     }
 }

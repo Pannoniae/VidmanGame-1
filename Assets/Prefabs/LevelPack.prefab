@@ -4439,6 +4439,7 @@ GameObject:
   - component: {fileID: 8717127522480913021}
   - component: {fileID: 2192220949409266937}
   - component: {fileID: 5804045340104664620}
+  - component: {fileID: 3826376591547468001}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4586,22 +4587,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604ec243be9cf17459c5ce0d28c22053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
-  m_CrouchSpeed: 0.4
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  jumpForce: 700
+  crouchSpeed: 0.4
+  movementSmoothing: 0.05
+  airControl: 1
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  m_GroundCheck: {fileID: 7290352371716170476}
-  m_CeilingCheck: {fileID: 7290352372189507599}
-  m_CrouchDisableCollider: {fileID: 0}
+  groundCheck: {fileID: 7290352371716170476}
+  ceilingCheck: {fileID: 7290352372189507599}
+  crouchDisableCollider: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+  anim: {fileID: 0}
 --- !u!114 &7290352373005344141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4629,6 +4631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   level: 0
+  pauseMenu: {fileID: 0}
 --- !u!114 &2192220949409266937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4655,3 +4658,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActionText: {fileID: 6833701462744273728}
+  destination: {fileID: 0}
+--- !u!95 &3826376591547468001
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717127522480913022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cadbbfa2a75a575469b83f6c53e69020, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

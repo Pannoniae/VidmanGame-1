@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterController2D : MonoBehaviour {
     [FormerlySerializedAs("m_JumpForce")] [SerializeField] private float jumpForce = 400f;
@@ -27,6 +29,13 @@ public class CharacterController2D : MonoBehaviour {
 
     public BoolEvent OnCrouchEvent;
     private bool wasCrouching = false;
+
+    public Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Awake() {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -109,5 +118,32 @@ public class CharacterController2D : MonoBehaviour {
         var theScale = transform1.localScale;
         theScale.x *= -1;
         transform1.localScale = theScale;
+    }
+    void Update()
+    {
+        if(Input.GetAxisRaw("Horizontal") != 0f)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
+        if(Input.GetButtonDown("Jump") && grounded)
+        {
+            anim.SetBool("hasJumped", true);
+        }
+        else if(Input.GetButtonUp("Jump") || !grounded)
+        {
+            anim.SetBool("hasJumped", false);
+        }
+        if(!grounded)
+        {
+            anim.SetBool("isFalling", true);
+        }
+        else
+        {
+            anim.SetBool("isFalling", false);
+        }
     }
 }

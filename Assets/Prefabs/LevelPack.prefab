@@ -4434,7 +4434,6 @@ GameObject:
   - component: {fileID: 1096612383332045591}
   - component: {fileID: 5456797279602585675}
   - component: {fileID: 7290352373005344143}
-  - component: {fileID: 7290352373005344142}
   - component: {fileID: 7290352373005344141}
   - component: {fileID: 8717127522480913021}
   - component: {fileID: 2192220949409266937}
@@ -4573,22 +4572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197a821fcb5c81645b349fb4f5d41914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller2D: {fileID: 7290352373005344142}
-  runSpeed: 60
---- !u!114 &7290352373005344142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8717127522480913022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604ec243be9cf17459c5ce0d28c22053, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 700
-  crouchSpeed: 0.4
+  jumpForce: 400
+  crouchSpeed: 0.36
   movementSmoothing: 0.05
   airControl: 1
   whatIsGround:
@@ -4603,7 +4588,8 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
-  anim: {fileID: 0}
+  anim: {fileID: 3826376591547468001}
+  runSpeed: 60
 --- !u!114 &7290352373005344141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4631,7 +4617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   level: 0
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 7290352371131145471}
 --- !u!114 &2192220949409266937
 MonoBehaviour:
   m_ObjectHideFlags: 0

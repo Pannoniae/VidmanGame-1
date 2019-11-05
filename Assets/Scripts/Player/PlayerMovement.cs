@@ -31,22 +31,16 @@ public class PlayerMovement : MonoBehaviour {
 
     bool isCrouchColliderPresent = false;
 
+    private Rigidbody2D body;
+
     const float groundedRadius = .2f;
     private bool grounded;
     const float ceilingRadius = .2f;
-    private new Rigidbody2D rigidbody2D;
     private bool facingRight = true;
     private Vector3 velocity = Vector3.zero;
 
     private Collider2D[] colliders = new Collider2D[100]; // increase if not enough
 
-    [Header("Events")] [Space] public UnityEvent OnLandEvent;
-
-    [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> {
-    }
-
-    public BoolEvent OnCrouchEvent;
     private bool wasCrouching = false;
 
     public Animator anim;
@@ -56,13 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         anim = GetComponent<Animator>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
-
-        if (OnLandEvent == null)
-            OnLandEvent = new UnityEvent();
-
-        if (OnCrouchEvent == null)
-            OnCrouchEvent = new BoolEvent();
+        body = GetComponent<Rigidbody2D>();
 
         if (crouchDisableCollider != null) {
             isCrouchColliderPresent = true;
@@ -92,7 +80,6 @@ foreach (var t in colliders) {
             if (crouch) {
                 if (!wasCrouching) {
                     wasCrouching = true;
-                    OnCrouchEvent.Invoke(true);
                 }
 
                 move *= crouchSpeed;
@@ -106,13 +93,12 @@ foreach (var t in colliders) {
 
                 if (wasCrouching) {
                     wasCrouching = false;
-                    OnCrouchEvent.Invoke(false);
                 }
             }
 
-            var velocity1 = rigidbody2D.velocity;
+            var velocity1 = body.velocity;
             Vector3 targetVelocity = new Vector2(move * 10f, velocity1.y);
-            rigidbody2D.velocity = Vector3.SmoothDamp(velocity1, targetVelocity, ref velocity,
+            body.velocity = Vector3.SmoothDamp(velocity1, targetVelocity, ref velocity,
                 movementSmoothing);
 
             if (move > 0 && !facingRight) {
@@ -125,7 +111,7 @@ foreach (var t in colliders) {
 
         if (grounded && jump) {
             grounded = false;
-            rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+            body.AddForce(new Vector2(0f, jumpForce));
         }
     }
 
@@ -189,7 +175,6 @@ foreach (var t in colliders) {
         }
 
         if (!wasGrounded) {
-            OnLandEvent.Invoke();
         }
 
         print((grounded, velocity));

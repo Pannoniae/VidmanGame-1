@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Security.Cryptography;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     public int Score;
     public string level;
     public PauseMenu pauseMenu;
+
+    public Vector2 spawn;
+
+    public void Awake() {
+        spawn = transform.position;
+    }
 
     public void SavePlayer() {
         Score = ScoreSystem.Score;
@@ -30,5 +38,10 @@ public class Player : MonoBehaviour {
         transform.position = position;
 
         pauseMenu.Resume();
+    }
+
+    public void Kill() {
+        // TODO add "player respawned" screen
+        transform.position = spawn;
     }
 }

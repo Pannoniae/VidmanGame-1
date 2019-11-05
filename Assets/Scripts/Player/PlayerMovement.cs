@@ -118,8 +118,6 @@ public class PlayerMovement : MonoBehaviour {
         if (IsGrounded()) {
             grounded = true;
         }
-
-        print((body.velocity, grounded));
     }
 
     public bool IsGrounded() {
@@ -129,7 +127,6 @@ public class PlayerMovement : MonoBehaviour {
 
         var hit = Physics2D.Raycast(position, direction, distance, (1 << 8));
         Debug.DrawRay(position, direction * distance, Color.green);
-        print(hit.collider?.name);
         return hit.collider != null;
     }
 }

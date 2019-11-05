@@ -90,6 +90,17 @@ public class PlayerMovement : MonoBehaviour {
             crouch = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.E)) {
+            // ReSharper disable once Unity.PreferNonAllocApi
+            var objects = Physics2D.OverlapCircleAll(transform.position, 10f);
+            foreach (var o in objects) {
+                if (o.gameObject.name.Contains("button")) {
+                    print("a");
+                    o.gameObject.GetComponent<Button>().flip();
+                }
+            }
+        }
+
         if (!Util.FloatEquals(Input.GetAxisRaw("Horizontal"), 0f)) {
             anim.SetBool(IsWalking, true);
         }

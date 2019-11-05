@@ -1,7 +1,28 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
-public interface PuzzleElement {
-    void activate();
-    void deactivate();
-    List<PuzzleElement> connectedElements { get; set; } // which elements are activated if this element is activated
+public abstract class PuzzleElement : MonoBehaviour {
+    public abstract void activate();
+    public abstract void deactivate();
+
+    public bool activated;
+
+    public virtual void flip() {
+        if (activated) {
+            deactivate();
+        }
+        else {
+            activate();
+        }
+    }
+
+    /**
+     * This method checks if all inputs are true.
+     */
+    public virtual bool checkInputs() {
+        return connectedElements.All(element => element.activated);
+    }
+
+    List<PuzzleElement> connectedElements { get; set; } // which elements are connected to this element
 }

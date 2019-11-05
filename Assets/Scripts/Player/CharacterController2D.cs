@@ -1,18 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using System.Collections;
-using System.Collections.Generic;
 
 public class CharacterController2D : MonoBehaviour {
-    [FormerlySerializedAs("m_JumpForce")] [SerializeField] private float jumpForce = 400f;
-    [FormerlySerializedAs("m_CrouchSpeed")] [Range(0, 1)] [SerializeField] private float crouchSpeed = .36f;
-    [FormerlySerializedAs("m_MovementSmoothing")] [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
-    [FormerlySerializedAs("m_AirControl")] [SerializeField] private bool airControl = false;
-    [FormerlySerializedAs("m_WhatIsGround")] [SerializeField] private LayerMask whatIsGround;
-    [FormerlySerializedAs("m_GroundCheck")] [SerializeField] private Transform groundCheck;
-    [FormerlySerializedAs("m_CeilingCheck")] [SerializeField] private Transform ceilingCheck;
-    [FormerlySerializedAs("m_CrouchDisableCollider")] [SerializeField] private Collider2D crouchDisableCollider;
+    [FormerlySerializedAs("m_JumpForce")] [SerializeField]
+    private float jumpForce = 400f;
+
+    [FormerlySerializedAs("m_CrouchSpeed")] [Range(0, 1)] [SerializeField]
+    private float crouchSpeed = .36f;
+
+    [FormerlySerializedAs("m_MovementSmoothing")] [Range(0, .3f)] [SerializeField]
+    private float movementSmoothing = .05f;
+
+    [FormerlySerializedAs("m_AirControl")] [SerializeField]
+    private bool airControl = false;
+
+    [FormerlySerializedAs("m_WhatIsGround")] [SerializeField]
+    private LayerMask whatIsGround;
+
+    [FormerlySerializedAs("m_GroundCheck")] [SerializeField]
+    private Transform groundCheck;
+
+    [FormerlySerializedAs("m_CeilingCheck")] [SerializeField]
+    private Transform ceilingCheck;
+
+    [FormerlySerializedAs("m_CrouchDisableCollider")] [SerializeField]
+    private Collider2D crouchDisableCollider;
+
+    bool isCrouchColliderPresent = false;
 
     const float groundedRadius = .2f;
     private bool grounded;
@@ -20,6 +35,8 @@ public class CharacterController2D : MonoBehaviour {
     private new Rigidbody2D rigidbody2D;
     private bool facingRight = true;
     private Vector3 velocity = Vector3.zero;
+    
+    private Collider2D[] colliders = new Collider2D[100]; // increase if not enough
 
     [Header("Events")] [Space] public UnityEvent OnLandEvent;
 
@@ -32,12 +49,8 @@ public class CharacterController2D : MonoBehaviour {
 
     public Animator anim;
 
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
-
     private void Awake() {
+        anim = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
@@ -45,13 +58,17 @@ public class CharacterController2D : MonoBehaviour {
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+
+        if (crouchDisableCollider != null) {
+            isCrouchColliderPresent = true;
+        }
     }
 
     private void FixedUpdate() {
         bool wasGrounded = grounded;
         grounded = false;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround);
+        Physics2D.OverlapCircleNonAlloc(groundCheck.position, groundedRadius, colliders, whatIsGround);
         foreach (var t in colliders) {
             if (t.gameObject != gameObject) {
                 grounded = true;
@@ -78,11 +95,11 @@ public class CharacterController2D : MonoBehaviour {
 
                 move *= crouchSpeed;
 
-                if (crouchDisableCollider != null)
+                if (isCrouchColliderPresent)
                     crouchDisableCollider.enabled = false;
             }
             else {
-                if (crouchDisableCollider != null)
+                if (isCrouchColliderPresent)
                     crouchDisableCollider.enabled = true;
 
                 if (wasCrouching) {
@@ -120,30 +137,24 @@ public class CharacterController2D : MonoBehaviour {
         transform1.localScale = theScale;
     }
 
-    public void Update()
-    {
-        
-            if(Input.GetAxisRaw("Horizontal") != 0f)
-            {
-                anim.SetBool("isWalking", true);
-            }
-            else
-            {
-                anim.SetBool("isWalking", false);
-            }
-            if(Input.GetButtonDown("Jump") && grounded)
-            {
-                anim.SetBool("isJumping", true);
-            }
-            if(!grounded)
-            {
-                anim.SetBool("isJumping", false);
-                anim.SetBool("isFalling", true);
-            }
-            else
-            {
-                anim.SetBool("isFalling", false);
-            }
-        
+    public void Update() {
+        if (!(Util.FloatEquals(Input.GetAxisRaw("Horizontal"), 0f))) {
+            anim.SetBool("isWalking", true);
+        }
+        else {
+            anim.SetBool("isWalking", false);
+        }
+
+        if (Input.GetButtonDown("Jump") && grounded) {
+            anim.SetBool("isJumping", true);
+        }
+
+        if (!grounded) {
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isFalling", true);
+        }
+        else {
+            anim.SetBool("isFalling", false);
+        }
     }
 }

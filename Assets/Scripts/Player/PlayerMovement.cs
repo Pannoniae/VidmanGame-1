@@ -201,14 +201,6 @@ public class PlayerMovement : MonoBehaviour {
     public GameManager gm;
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            // ReSharper disable once Unity.PreferNonAllocApi
-            var objects = gm.elements;
-            foreach (var o in objects.OfType<Button>()) {
-                print("a");
-                o.flip();
-            }
-        }
 
         if (isGrounded)
             _velocity.y = 0;

@@ -7,7 +7,7 @@ public abstract class PuzzleElement : MonoBehaviour {
     public abstract void deactivate();
 
     public bool activated = startEnabled;
-    private GameManager gm;
+    public GameManager gm;
     public static bool startEnabled => false;
 
     public void Awake() {

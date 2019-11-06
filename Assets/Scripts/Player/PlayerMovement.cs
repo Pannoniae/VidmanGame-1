@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour {
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
+    public GameManager gm;
 
     private void Awake() {
         anim = GetComponent<Animator>();
@@ -92,11 +94,11 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.E)) {
             // ReSharper disable once Unity.PreferNonAllocApi
-            var objects = Physics2D.OverlapCircleAll(transform.position, 10f);
+            var objects = gm.elements;
             foreach (var o in objects) {
-                if (o.gameObject.name.Contains("button")) {
+                if (o is Button) {
                     print("a");
-                    o.gameObject.GetComponent<Button>().flip();
+                    o.flip();
                 }
             }
         }

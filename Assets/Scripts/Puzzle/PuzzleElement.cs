@@ -6,7 +6,13 @@ public abstract class PuzzleElement : MonoBehaviour {
     public abstract void activate();
     public abstract void deactivate();
 
-    public bool activated;
+    public bool activated = startEnabled;
+    private GameManager gm;
+    public static bool startEnabled => false;
+
+    public void Awake() {
+        gm.registerElement(this);
+    }
 
     public virtual void flip() {
         if (activated) {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
@@ -193,11 +194,24 @@ public class PlayerMovement : MonoBehaviour {
 
     private Animator _animator;
     private Vector3 _velocity;
+    
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+    private static readonly int IsJumping = Animator.StringToHash("isJumping");
+    private static readonly int IsFalling = Animator.StringToHash("isFalling");
+    public GameManager gm;
 
     void Update() {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            // ReSharper disable once Unity.PreferNonAllocApi
+            var objects = gm.elements;
+            foreach (var o in objects.OfType<Button>()) {
+                print("a");
+                o.flip();
+            }
+        }
+
         if (isGrounded)
             _velocity.y = 0;
-
         if (Input.GetKey(KeyCode.D)) {
             normalizedHorizontalSpeed = 1;
             if (transform.localScale.x < 0f)
@@ -205,7 +219,8 @@ public class PlayerMovement : MonoBehaviour {
                     new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
             if (isGrounded)
-                _animator.Play(Animator.StringToHash("Run"));
+                //_animator.Play(Animator.StringToHash("Seta"));
+                _animator.SetBool(IsWalking, true);
         }
         else if (Input.GetKey(KeyCode.A)) {
             normalizedHorizontalSpeed = -1;
@@ -214,20 +229,28 @@ public class PlayerMovement : MonoBehaviour {
                     new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
             if (isGrounded)
-                _animator.Play(Animator.StringToHash("Run"));
+                //_animator.Play(Animator.StringToHash("Seta"));
+                _animator.SetBool(IsWalking, true);
         }
         else {
             normalizedHorizontalSpeed = 0;
 
             if (isGrounded)
-                _animator.Play(Animator.StringToHash("Idle"));
+                //_animator.Play(Animator.StringToHash("Idle"));
+                _animator.SetBool(IsWalking, false);
+            _animator.SetBool(IsFalling, false);
         }
 
 
         // we can only jump whilst grounded
         if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))) {
             _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
-            _animator.Play(Animator.StringToHash("Jump"));
+            //_animator.Play(Animator.StringToHash("Ugras"));
+            _animator.SetBool(IsJumping, true);
+        }
+        if (!isGrounded) {
+            _animator.SetBool(IsJumping, false);
+            _animator.SetBool(IsFalling, true);
         }
 
 
@@ -304,7 +327,6 @@ public class PlayerMovement : MonoBehaviour {
         // now we check movement in the horizontal dir
         if (!Util.FloatEquals(deltaMovement.x, 0f))
             moveHorizontally(ref deltaMovement);
-        print((velocity, _velocity));
         // next, check movement in the vertical dir
         if (!Util.FloatEquals(deltaMovement.y, 0f))
             moveVertically(ref deltaMovement);

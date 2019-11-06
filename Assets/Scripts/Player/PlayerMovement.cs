@@ -131,15 +131,17 @@ public class PlayerMovement : MonoBehaviour {
         if (IsGrounded()) {
             grounded = true;
         }
+
+        print(IsGrounded());
     }
 
     public bool IsGrounded() {
-        var position = transform.position;
-        var direction = Vector2.down;
-        const float distance = 1.8f;
+        const float distance = 1.5f;
+        var position = body.position + new Vector2(0, -distance);
+        const float radius = 0.5f;
 
-        var hit = Physics2D.Raycast(position, direction, distance, (1 << 8));
-        Debug.DrawRay(position, direction * distance, Color.green);
-        return hit.collider != null;
+        var hit = Physics2D.OverlapCircle(position, radius, LayerMask.GetMask("Ground"));
+        //DrawEllipse(position, Vector3.forward, Vector3.up, radius, radius, 360, Color.green);
+        return hit != null;
     }
 }

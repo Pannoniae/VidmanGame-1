@@ -174,13 +174,15 @@ public class PlayerMovement : MonoBehaviour {
 
         // here, we trigger our properties that have setters with bodies
         skinWidth = _skinWidth;
+        rigidBody2D.useFullKinematicContacts = true;
 
+        // NO WE DONT YOU PIECE OF SHIT
         // we want to set our CC2D to ignore all collision layers except what is in our triggerMask
-        for (var i = 0; i < 32; i++) {
-            // see if our triggerMask contains this layer and if not ignore it
-            if ((triggerMask.value & 1 << i) == 0)
-                Physics2D.IgnoreLayerCollision(gameObject.layer, i);
-        }
+//        for (var i = 0; i < 32; i++) {
+//            // see if our triggerMask contains this layer and if not ignore it
+//            if ((triggerMask.value & 1 << i) == 0)
+//                Physics2D.IgnoreLayerCollision(gameObject.layer, i);
+//        }
     }
 
     // movement config
@@ -194,14 +196,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private Animator _animator;
     private Vector3 _velocity;
-    
+
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     public GameManager gm;
 
     void Update() {
-
         if (isGrounded)
             _velocity.y = 0;
         if (Input.GetKey(KeyCode.D)) {
@@ -240,6 +241,7 @@ public class PlayerMovement : MonoBehaviour {
             //_animator.Play(Animator.StringToHash("Ugras"));
             _animator.SetBool(IsJumping, true);
         }
+
         if (!isGrounded) {
             _animator.SetBool(IsJumping, false);
             _animator.SetBool(IsFalling, true);

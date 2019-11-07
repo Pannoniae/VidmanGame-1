@@ -4576,7 +4576,7 @@ MonoBehaviour:
   _skinWidth: 0.02
   platformMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   triggerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -4624,7 +4624,8 @@ MonoBehaviour:
   runSpeed: 8
   groundDamping: 20
   inAirDamping: 5
-  jumpHeight: 5
+  jumpHeight: 6
+  gm: {fileID: 0}
 --- !u!114 &7290352373005344141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4654,6 +4655,7 @@ MonoBehaviour:
   level: 0
   pauseMenu: {fileID: 7290352371131145471}
   spawn: {x: 0, y: 0}
+  gm: {fileID: 0}
 --- !u!114 &2192220949409266937
 MonoBehaviour:
   m_ObjectHideFlags: 0

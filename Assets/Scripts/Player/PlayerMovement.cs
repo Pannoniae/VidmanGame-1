@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour {
     public float runSpeed = 8f;
     public float groundDamping = 20f; // how fast do we change direction? higher means faster
     public float inAirDamping = 5f;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 6f;
 
     [HideInInspector] private float normalizedHorizontalSpeed = 0;
 
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour {
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
-    public GameManager gm;
+    public GM gm;
 
     void Update() {
         if (isGrounded)
@@ -228,10 +228,11 @@ public class PlayerMovement : MonoBehaviour {
         else {
             normalizedHorizontalSpeed = 0;
 
-            if (isGrounded)
+            if (isGrounded) {
                 //_animator.Play(Animator.StringToHash("Idle"));
                 _animator.SetBool(IsWalking, false);
-            _animator.SetBool(IsFalling, false);
+                _animator.SetBool(IsFalling, false);
+            }
         }
 
 
@@ -245,6 +246,10 @@ public class PlayerMovement : MonoBehaviour {
         if (!isGrounded) {
             _animator.SetBool(IsJumping, false);
             _animator.SetBool(IsFalling, true);
+        }
+
+        if (isGrounded) {
+            _animator.SetBool(IsFalling, false);
         }
 
 

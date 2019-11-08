@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public PauseMenu pauseMenu;
 
     public Vector2 spawn;
-    public GameManager gm;
+    public GM gm;
 
     public void Awake() {
         spawn = transform.position;

@@ -908,6 +908,11 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 1833381506}
+    - target: {fileID: 7290352373005344143, guid: e280542a6a664ac4594a76462ec5060a,
+        type: 3}
+      propertyPath: platformMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7290352372236284711, guid: e280542a6a664ac4594a76462ec5060a,
         type: 3}
       propertyPath: m_SortingOrder

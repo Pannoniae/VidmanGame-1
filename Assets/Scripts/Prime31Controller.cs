@@ -514,19 +514,20 @@ namespace Prime31 {
             if (_raycastHit) {
                 // bail out if we have no slope
                 var angle = Vector2.Angle(_raycastHit.normal, Vector2.up);
-                if (angle == 0)
+                if (Math.Abs(angle) < 0.001)
                     return;
 
                 // we are moving down the slope if our normal and movement direction are in the same x direction
-                var isMovingDownSlope = Mathf.Sign(_raycastHit.normal.x) == Mathf.Sign(deltaMovement.x);
+                var isMovingDownSlope =
+                    Math.Abs(Mathf.Sign(_raycastHit.normal.x) - Mathf.Sign(deltaMovement.x)) < 0.001;
                 if (isMovingDownSlope) {
                     // going down we want to speed up in most cases so the slopeSpeedMultiplier curve should be > 1 for negative angles
                     var slopeModifier = slopeSpeedMultiplier.Evaluate(-angle);
                     // we add the extra downward movement here to ensure we "stick" to the surface below
                     deltaMovement.y += _raycastHit.point.y - slopeRay.y - skinWidth;
                     deltaMovement = new Vector3(0, deltaMovement.y, 0) +
-                        (Quaternion.AngleAxis(-angle, Vector3.forward) *
-                            new Vector3(deltaMovement.x * slopeModifier, 0, 0));
+                        Quaternion.AngleAxis(-angle, Vector3.forward) *
+                        new Vector3(deltaMovement.x * slopeModifier, 0, 0);
                     collisionState.movingDownSlope = true;
                     collisionState.slopeAngle = angle;
                 }
